@@ -7,7 +7,7 @@ primary_region = "cdg"
 
 [env]
   PORT = "3000"
-  NODE_ENV = "production"
+  NODE_ENV = "development"
 
 [[services]]
   internal_port = 3000

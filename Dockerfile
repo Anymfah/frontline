@@ -1,5 +1,6 @@
 # Use an official Node runtime as the base image
 FROM node:24-slim
+ENV GAME_ENV=Dev
 
 # 1) Installer Git pour que build-prod (webpack) puisse faire git rev-parse
 RUN apt-get update \
@@ -14,7 +15,7 @@ RUN npm ci
 
 # 3) Copier le code et builder le front
 COPY . .
-RUN npm run build-prod
+RUN npm run build-dev
 
 # 4) Ouvrir le port exposé par Fly
 EXPOSE 3000

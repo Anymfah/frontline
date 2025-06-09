@@ -5,15 +5,15 @@ import { getServerConfigFromServer } from "../core/configuration/ConfigLoader";
 import { Cloudflare, TunnelConfig } from "./Cloudflare";
 import { startMaster } from "./Master";
 import { startWorker } from "./Worker";
-
-const config = getServerConfigFromServer();
-
 dotenv.config();
+const config = getServerConfigFromServer();
+const isFly = Boolean(process.env.FLY_ALLOC_ID);
+const test = false;
 
 // Main entry point of the application
 async function main() {
   // Check if this is the primary (master) process
-  if (cluster.isPrimary) {
+  if (test && cluster.isPrimary) {
     if (config.env() !== GameEnv.Dev) {
       await setupTunnels();
     }
