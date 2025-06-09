@@ -12,12 +12,9 @@ primary_region = "cdg"
 [[services]]
   internal_port = 3000
   protocol = "tcp"
-
-  # HTTP public on 80 → redirect to 443 TLS
   [[services.ports]]
     port = 80
     handlers = ["http"]
-
   [[services.ports]]
     port = 443
-    handlers = ["tls", "http"]
+    handlers = ["tls","http"]
