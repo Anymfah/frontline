@@ -10,7 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const gitCommit =
-  process.env.GIT_COMMIT ?? execSync("git rev-parse HEAD").toString().trim();
+  process.env.GIT_COMMIT ||
+  (() => {
+    try {
+      return execSync("git rev-parse HEAD").toString().trim();
+    } catch {
+      return "unknown";
+    }
+  })();
 
 export default async (env, argv) => {
   const isProduction = argv.mode === "production";

@@ -172,7 +172,7 @@ app.post(
 
     try {
       const response = await fetch(
-        `http://localhost:${config.workerPort(gameID)}/api/kick_player/${gameID}/${clientID}`,
+        `http://0.0.0.0:${config.workerPort(gameID)}/api/kick_player/${gameID}/${clientID}`,
         {
           method: "POST",
           headers: {
@@ -200,7 +200,7 @@ async function fetchLobbies(): Promise<number> {
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 5000); // 5 second timeout
     const port = config.workerPort(gameID);
-    const promise = fetch(`http://localhost:${port}/api/game/${gameID}`, {
+    const promise = fetch(`http://0.0.0.0:${port}/api/game/${gameID}`, {
       headers: { [config.adminHeader()]: config.adminToken() },
       signal: controller.signal,
     })
@@ -275,7 +275,7 @@ async function schedulePublicGame(playlist: MapPlaylist) {
   // Send request to the worker to start the game
   try {
     const response = await fetch(
-      `http://localhost:${config.workerPort(gameID)}/api/create_game/${gameID}`,
+      `http://0.0.0.0:${config.workerPort(gameID)}/api/create_game/${gameID}`,
       {
         method: "POST",
         headers: {
