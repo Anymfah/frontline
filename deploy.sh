@@ -117,8 +117,8 @@ fi
 
 # Configuration
 UPDATE_SCRIPT="./update.sh" # Path to your update script
-REMOTE_USER="openfront"
-REMOTE_UPDATE_PATH="/home/$REMOTE_USER"
+REMOTE_USER="root"
+REMOTE_UPDATE_PATH="/$REMOTE_USER"
 REMOTE_UPDATE_SCRIPT="$REMOTE_UPDATE_PATH/update-openfront.sh" # Where to place the script on server
 
 VERSION_TAG=$(date +"%Y%m%d-%H%M%S")

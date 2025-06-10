@@ -62,6 +62,7 @@ docker run -d \
     --restart="${RESTART}" \
     --env-file "$ENV_FILE" \
     --name "${CONTAINER_NAME}" \
+    -e PORT=3000 \
     "${DOCKER_IMAGE}"
 
 if [ $? -eq 0 ]; then
