@@ -380,10 +380,8 @@ export function startWorker() {
   });
 
   // The load balancer will handle routing to this server based on path
-  //const PORT = config.workerPortByIndex(workerId);
-  const PORT = parseInt(process.env.PORT || "") || 3000;
-  const HOST = "0.0.0.0";
-  console.log("PORT + HOST", PORT, HOST);
+  const PORT = config.workerPortByIndex(workerId);
+  const HOST = "localhost";
   server.listen(PORT, HOST, () => {
     log.info(`running on http://${HOST}:${PORT}`);
     log.info(`Handling requests with path prefix /w${workerId}/`);

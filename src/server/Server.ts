@@ -41,13 +41,13 @@ async function setupTunnels() {
 
   const domainToService = new Map<string, string>().set(
     config.subdomain(),
-    `http://0.0.0.0:3000`,
+    `http://localhost:3000`,
   );
 
   for (let i = 0; i < config.numWorkers(); i++) {
     domainToService.set(
       `w${i}-${config.subdomain()}`,
-      `http://0.0.0.0:${3000 + i + 1}`,
+      `http://localhost:${3000 + i + 1}`,
     );
   }
 
