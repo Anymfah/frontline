@@ -12,8 +12,8 @@ const config = getServerConfigFromServer();
 async function main() {
   // Check if this is the primary (master) process
   if (cluster.isPrimary) {
-    if (!process.env.SKIP_CF_TUNNEL && config.env() !== GameEnv.Dev) {
-      await setupTunnels();
+    if (config.env() !== GameEnv.Dev) {
+      //await setupTunnels(); //TODO: Setup CF tunnels
     }
     console.log("Starting master process...");
     await startMaster();
