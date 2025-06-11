@@ -7,14 +7,12 @@ import { startMaster } from "./Master";
 import { startWorker } from "./Worker";
 dotenv.config();
 const config = getServerConfigFromServer();
-const isFly = Boolean(process.env.FLY_ALLOC_ID);
-const test = false;
 
 // Main entry point of the application
 async function main() {
   // Check if this is the primary (master) process
-  if (test && cluster.isPrimary) {
-    if (config.env() !== GameEnv.Dev) {
+  if (cluster.isPrimary) {
+    if (!process.env.SKIP_CF_TUNNEL && config.env() !== GameEnv.Dev) {
       await setupTunnels();
     }
     console.log("Starting master process...");

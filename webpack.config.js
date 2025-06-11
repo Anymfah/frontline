@@ -10,14 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const gitCommit =
-  process.env.GIT_COMMIT ||
-  (() => {
-    try {
-      return execSync("git rev-parse HEAD").toString().trim();
-    } catch {
-      return "unknown";
-    }
-  })();
+  process.env.GIT_COMMIT ?? execSync("git rev-parse HEAD").toString().trim();
 
 export default async (env, argv) => {
   const isProduction = argv.mode === "production";
@@ -166,7 +159,7 @@ export default async (env, argv) => {
           },
           historyApiFallback: true,
           compress: true,
-          port: 10000,
+          port: 3000,
           proxy: [
             // WebSocket proxies
             {

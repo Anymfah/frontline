@@ -381,9 +381,8 @@ export function startWorker() {
 
   // The load balancer will handle routing to this server based on path
   const PORT = config.workerPortByIndex(workerId);
-  const HOST = "localhost";
-  server.listen(PORT, HOST, () => {
-    log.info(`running on http://${HOST}:${PORT}`);
+  server.listen(PORT, () => {
+    log.info(`running on http://localhost:${PORT}`);
     log.info(`Handling requests with path prefix /w${workerId}/`);
     // Signal to the master process that this worker is ready
     if (process.send) {
