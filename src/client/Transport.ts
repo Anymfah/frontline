@@ -14,6 +14,7 @@ import {
   AllPlayersStats,
   ClientHashMessage,
   ClientIntentMessage,
+  ClientJoinMessage,
   ClientPingMessage,
   ClientSendWinnerMessage,
   Intent,
@@ -333,20 +334,17 @@ export class Transport {
   }
 
   joinGame(numTurns: number) {
-    const msg = {
-      type: "join",
-      gameID: this.lobbyConfig.gameID,
-      clientID: this.lobbyConfig.clientID,
-      lastTurn: numTurns,
-      token: this.lobbyConfig.token,
-      username: this.lobbyConfig.playerName,
-      flag: this.lobbyConfig.flag,
-    };
-
-    console.log("[JOIN] Sending join message object:", msg);
-    console.log("[JOIN] JSON stringified:", JSON.stringify(msg));
-
-    this.sendMsg(JSON.stringify(msg));
+    this.sendMsg(
+      JSON.stringify({
+        type: "join",
+        gameID: this.lobbyConfig.gameID,
+        clientID: this.lobbyConfig.clientID,
+        lastTurn: numTurns,
+        token: this.lobbyConfig.token,
+        username: this.lobbyConfig.playerName,
+        flag: this.lobbyConfig.flag,
+      } satisfies ClientJoinMessage),
+    );
   }
 
   leaveGame(saveFullGame: boolean = false) {
