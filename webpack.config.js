@@ -159,7 +159,7 @@ export default async (env, argv) => {
           },
           historyApiFallback: true,
           compress: true,
-          port: 3000,
+          port: 9000,
           proxy: [
             // WebSocket proxies
             {
